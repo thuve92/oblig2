@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Test Suite</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.12.0.css">
+  </head>
+  <body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="https://code.jquery.com/qunit/qunit-2.12.0.js"></script>
+    <script>
+        // model
+        let numbers;
+        let chosenBar;
+        let inputValue; 
+        let barNo;
+        let stroke;
+        let enableButton;
+        //view
+        
+        function show() {
+
+        }
+       
+        QUnit.test('sjekk valgt stolpe', function(assert) {
+            chooseBar(5)
+            let actual = chosenBar;
+            let expected = 5;
+            assert.deepEqual(actual, expected);
+          });
+
+          QUnit.test('sjekk ikke valgt stolpe', function(assert) {
+            chooseBar(null);
+            let actual = chosenBar;
+            let expected = null;
+            assert.deepEqual(actual, expected);
+          });
+
+          QUnit.test('Sjekk slette stolpe', function(assert) {
+            numbers = [7, 3, 1, 5, 8]; 
+            chosenBar = 3;
+            removeBar()
+            let actual = numbers;
+            let expected = [7, 3, 5, 8];
+            assert.deepEqual(actual, expected);
+          });
+
+          QUnit.test('sjekk endre stolpe', function(assert) {
+            numbers = [7, 3, 1, 5, 8];
+            chosenBar = 3;
+            inputValue = 5;
+            changeBar()
+            let actual = numbers;
+            let expected = [7, 3, 5, 5, 8];
+            assert.deepEqual(actual, expected);
+          });
+
+          QUnit.test('sjekk legg til stolpe', function(assert) {
+            numbers = [7, 3, 1, 5, 8];
+            inputValue = 6;
+            createNewBar()
+            let actual = numbers;
+            let expected = [7, 3, 1, 5, 8, 6];
+            assert.deepEqual(actual, expected);
+          });
+      </script>
+
+    <script src="./controller.js"></script>
+</body>
+</html>
